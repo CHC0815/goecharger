@@ -71,6 +71,18 @@ class GoeChargerStatusMapper:
                 'token_9': int(status.get('ec9', 0)) / 10,
                 'token_1': int(status.get('ec1', 0)) / 10
         }
+        token_names = {
+                'token_a': status.get('rca', 'Token A'),
+                'token_r': status.get('rcr', 'Token R'),
+                'token_d': status.get('rcd', 'Token D'),
+                'token_4': status.get('rc4', 'Token 4'),
+                'token_5': status.get('rc5', 'Token 5'),
+                'token_6': status.get('rc6', 'Token 6'),
+                'token_7': status.get('rc7', 'Token 7'),
+                'token_8': status.get('rc8', 'Token 8'),
+                'token_9': status.get('rc9', 'Token 9'),
+                'token_1': status.get('rc1', 'Token 1')
+        }
         wifi = 'connected' if status.get('wst') == '3' else 'unknown' if status.get('wst') is None else 'not connected'
         firmware = status.get('fwv', 'unknown')
         serial_number = status.get('sse', 'unknown')
@@ -106,6 +118,7 @@ class GoeChargerStatusMapper:
             'unlocked_by_card': unlocked_by_card,
             'energy_total': energy_total,
             'energy_by_token': energy_by_token,
+            'token_names': token_names,
             'wifi': wifi,
 
             'u_l1': int(valueOrNull(status.get('nrg', []), GoeCharger.U_L1)),
